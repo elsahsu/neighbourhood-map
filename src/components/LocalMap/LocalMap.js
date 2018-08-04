@@ -3,7 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-map
 
 const localMap = withScriptjs(withGoogleMap((props) => {
     const markers = props.markers.map(marker => 
-        <Marker position={marker.position} />
+        <Marker id={marker.id} key={marker.id} title={marker.title} position={marker.position}/>
     )
     return (
         <div id="map">

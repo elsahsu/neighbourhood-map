@@ -4,14 +4,36 @@ import LocalMap from './components/LocalMap/LocalMap';
 
 class App extends Component {
   state = {
-    markers: [
-      {
-        position: { lat: 61.5, lng: 23.75 }
-      },
-      {
-        position: { lat: 61.498, lng: 23.76 }
-      }
-    ]
+    markers: []
+  }
+
+  componentDidMount() {
+    const tampere_locations_url = 'https://visittampere.fi:443/api/location?tag=Extreme&lang=en&limit=100';
+    fetch(tampere_locations_url)
+      .then(result => result.json())
+      .then(locations => {
+        let markers = [];
+        console.log(locations);
+        locations.forEach(location => {
+          if (location.tags.length > 0) {
+            console.log(location.tags);
+            const marker = {
+              id: location.id,
+              title: location.title,
+              tags: location.tags,
+              description: location.description,
+              contact_info: location.contact_info,
+              position: {
+                lat: location.location[0],
+                lng: location.location[1]
+              }
+            }
+            markers.push(marker);
+          }
+        });
+        console.log(markers);
+        this.setState({markers: markers});
+      });
   }
 
   render() {
