@@ -3,6 +3,17 @@ import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
 
 class App extends Component {
+  state = {
+    markers: [
+      {
+        position: { lat: 61.5, lng: 23.75 }
+      },
+      {
+        position: { lat: 61.498, lng: 23.76 }
+      }
+    ]
+  }
+
   render() {
     return (
       <div className="App">
@@ -14,6 +25,7 @@ class App extends Component {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
+            markers={this.state.markers}
         />
       </div>
     );
