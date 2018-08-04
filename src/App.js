@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
+import LocationList from './components/LocationList/LocationList';
 
 class App extends Component {
   state = {
@@ -43,12 +44,15 @@ class App extends Component {
           <h1 className="App-title">Neighbourhood Map</h1>
         </header>
         <LocalMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnXBaHfhOkAjzcKTCAmFt557I1h8jGiRQ&v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `400px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            markers={this.state.markers}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnXBaHfhOkAjzcKTCAmFt557I1h8jGiRQ&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          markers={this.state.markers}
         />
+        <LocationList
+          markers={this.state.markers} />
+
       </div>
     );
   }
