@@ -1,4 +1,5 @@
 import React from 'react';
+import './LocalMap.css';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const localMap = withScriptjs(withGoogleMap((props) => {
@@ -6,13 +7,11 @@ const localMap = withScriptjs(withGoogleMap((props) => {
         <Marker id={marker.id} key={marker.id} title={marker.title} position={marker.position}/>
     )
     return (
-        <div id="map">
-            <GoogleMap
-                defaultZoom={14}
-                defaultCenter={{ lat: 61.498, lng: 23.76 }}>
-                {markers}
-            </GoogleMap>
-        </div>
+        <GoogleMap
+            defaultZoom={14}
+            defaultCenter={{ lat: 61.498, lng: 23.76 }}>
+            {markers}
+        </GoogleMap>
     );
 }));
 

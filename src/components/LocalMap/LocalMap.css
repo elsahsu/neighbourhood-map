@@ -1,0 +1,12 @@
+.MapContainer {
+  width: 100%;
+  min-width: 200pt;
+  flex-grow: 2;
+}
+  
+@media screen and (min-width: 600pt) {
+  .MapContainer {
+    width: 60%;
+    flex-basis: 60%;
+  }
+}

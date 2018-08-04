@@ -3,7 +3,7 @@ import './LocationList.css';
 
 const locationList = (props) => {
     const locations = props.markers.map(marker => 
-        <li key={marker.id}>{marker.title} [{marker.tags.join(', ')}]</li>
+        <li key={marker.id}> {marker.title} <br /> [{marker.tags.join(', ')}] </li>
     )
 
     return (

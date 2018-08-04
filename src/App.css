@@ -1,13 +1,21 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .App-header {
   background-color: #222;
-  padding: 1pt;
+  padding: 1px;
   color: white;
+  height: 25pt;
 }
 
 .App-title {
+  margin: 2pt;
   font-size: 1.5em;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
 }

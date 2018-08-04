@@ -1,4 +1,21 @@
-ul.LocationList {
-    width: 20%;
-    min-width: 200pt;
+.LocationList {
+  width: 100%;
+  min-width: 200pt;
+  margin: 0px;
+  padding: 0px;
+  background-color: #222;
+}
+
+.LocationList li {
+  text-align: left;
+  color: white;
+  padding: 5pt;
+  margin: 0px;
+  border: 1px solid grey;
+}
+
+@media screen and (min-width: 600pt) {
+  .LocationList {
+    width: 32%;
+  }
 }
