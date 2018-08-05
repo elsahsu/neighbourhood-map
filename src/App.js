@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const tampere_locations_url = 'https://visittampere.fi:443/api/location?lang=en&limit=100';
+    const tampere_locations_url = 'https://visittampere.fi:443/api/location?lang=en&limit=200';
     fetch(tampere_locations_url)
       .then(result => result.json())
       .then(locations => {
