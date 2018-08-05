@@ -37,6 +37,10 @@ class App extends Component {
       });
   }
 
+  markerClicked(id) {
+    console.log('Marker clicked:' + id);
+  }
+
   render() {
     return (
       <div className="App">
@@ -50,6 +54,8 @@ class App extends Component {
             containerElement={<div className="MapContainer" style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
             markers={this.state.markers}
+            showInfoWindow={false}
+            markerClicked={this.markerClicked}
           />
           <LocationList
             markers={this.state.markers} />
