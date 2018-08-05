@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
 import LocationList from './components/LocationList/LocationList';
+import TagFilter from './components/TagFilter/TagFilter';
+
 
 class App extends Component {
   state = {
@@ -68,6 +70,7 @@ class App extends Component {
             showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
           />
+          <TagFilter tags={this.state.tags} />
           <LocationList
             markers={this.state.markers} />
         </main>
