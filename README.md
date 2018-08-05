@@ -20,7 +20,14 @@ different tag. (Note: on small screens the list and menu are below the map.)
 Clicking on a marker or a list item opens up a info window with more detaied
 information about the attraction (description, image and contact information).
 
-Attraction information and locations are fetched from [Visit Tampere API](https://visittampere.fi/api-docs/).
+Attraction information and locations are fetched from
+[Visit Tampere API](https://visittampere.fi/api-docs/).
+
+Additional pricing and rating data are also fetched from
+[Yelp Fusion API](https://www.yelp.com/developers/documentation/v3)
+when available. (At least *Pizzeria Napoli* in *Famous Restaurants* and most
+restaurants under *Fine Dining* like *Restaurant C* and *Restaurant Heinätori*
+should have Yelp data).
 
 Bootstrapped with
 [Create React App](https://github.com/facebookincubator/create-react-app).
