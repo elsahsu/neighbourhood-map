@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
 import LocationList from './components/LocationList/LocationList';
-import TagFilter from './components/TagFilter/TagFilter';
+import TagFilter, {translateTag} from './components/TagFilter/TagFilter';
 
 
 class App extends Component {
   state = {
     markers: [],
     tags: [],
-    showInfoId: 0
+    currentTag: '', // Currently selected tag
+    showInfoId: 0, // Currently shown info window location ID
+    taggedMarkers: {} // Markers grouped by tags
   }
 
   componentDidMount() {
@@ -19,6 +21,7 @@ class App extends Component {
       .then(locations => {
         let markers = [];
         let tags = []
+        let taggedMarkers = {}
         console.log(locations);
         locations.forEach(location => {
           if (location.tags.length > 0) {
@@ -38,14 +41,20 @@ class App extends Component {
             location.tags.forEach(tag => {
                 if (!tags.includes(tag)) {
                   tags.push(tag);
+                  taggedMarkers[tag] = [marker];
+                } else {
+                  taggedMarkers[tag].push(marker);
                 }
-            })
+            });
           }
         });
 
         console.log(markers);
         console.log(tags);
-        this.setState({markers: markers, tags: tags});
+        this.setState({
+          markers: markers,
+          tags: tags,
+          taggedMarkers: taggedMarkers});
       });
   }
 
@@ -54,7 +63,19 @@ class App extends Component {
     this.setState({showInfoId: id});
   }
 
+  selectTag = (tag) => {
+    console.log('Selected tag: ', tag);
+    this.setState({currentTag: tag});
+  }
+
   render() {
+    let markers = this.state.markers;
+    let currentTag = this.state.currentTag;
+    if (currentTag != '' && currentTag != 'All')
+    {
+      markers = this.state.taggedMarkers[currentTag];
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -66,13 +87,13 @@ class App extends Component {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div className="MapContainer" style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
-            markers={this.state.markers}
+            markers={markers}
             showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
           />
-          <TagFilter tags={this.state.tags} />
+          <TagFilter tags={this.state.tags} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
           <LocationList
-            markers={this.state.markers} />
+            markers={markers} />
         </main>
       </div>
     );
