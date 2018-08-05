@@ -1,3 +1,7 @@
 .MapContainer {
   width: 100%;
 }
+
+li {
+  text-align: left;
+}

@@ -9,6 +9,10 @@ class App extends Component {
   state = {
     markers: [],
     tags: [],
+    center: {
+      lat: 61.498,
+      lng: 23.76
+    },
     currentTag: '', // Currently selected tag
     showInfoId: 0, // Currently shown info window location ID
     taggedMarkers: {} // Markers grouped by tags
@@ -54,7 +58,9 @@ class App extends Component {
         this.setState({
           markers: markers,
           tags: tags,
-          taggedMarkers: taggedMarkers});
+          taggedMarkers: taggedMarkers,
+          currentTag: tags[0]
+        });
       });
   }
 
@@ -68,8 +74,9 @@ class App extends Component {
     this.setState({currentTag: tag});
   }
 
-  locationClicked = (id) => {
-    console.log('Location clicked:', id);
+  locationClicked = (marker) => {
+    console.log('Location clicked:', marker);
+    this.setState({showInfoId: marker.id});
   }
 
   render() {
@@ -95,6 +102,7 @@ class App extends Component {
             markers={markers}
             showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
+            center={this.state.center}
           />
           </section>
           <section id="location-list-section">

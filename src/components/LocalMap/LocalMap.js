@@ -7,7 +7,19 @@ const localMap = withScriptjs(withGoogleMap((props) => {
     const markers = props.markers.map(marker => {
         let infoWindow = null;
         if (props.showInfoId === marker.id) {
-            infoWindow = <InfoWindow><p>{marker.description}</p></InfoWindow>
+            console.log(marker.contact_info);
+            infoWindow = (
+                <InfoWindow className="InfoWindow">
+                    <div>
+                        <div dangerouslySetInnerHTML={{__html: marker.description}}></div>
+                        <ul>
+                            <li>Address: {marker.contact_info.address}</li>
+                            <li>Phone: {marker.contact_info.phone}</li>
+                            <li>Link: <a href={marker.contact_info.link}>{marker.contact_info.link}</a></li>
+                        </ul>
+                    </div>
+                </InfoWindow>
+            );
         }
         return (
             <Marker
@@ -23,7 +35,7 @@ const localMap = withScriptjs(withGoogleMap((props) => {
     return (
         <GoogleMap
             defaultZoom={14}
-            defaultCenter={{ lat: 61.498, lng: 23.76 }}>
+            defaultCenter={props.center}>
             {markers}
         </GoogleMap>
     );

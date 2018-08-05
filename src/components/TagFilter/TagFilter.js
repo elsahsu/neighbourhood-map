@@ -55,7 +55,7 @@ const tagFilter = (props) => {
 
     return (
         <div className="TagFilter">
-            <label for="tag-select">Select Type</label>
+            <label htmlFor="tag-select">Select Type</label>
             <select
                 id="tag-select"
                 onChange={(event) => props.onSelectTag(event.target.value)}>
