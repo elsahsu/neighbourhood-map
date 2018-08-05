@@ -58,7 +58,8 @@ const tagFilter = (props) => {
             <label htmlFor="tag-select">Select Type</label>
             <select
                 id="tag-select"
-                onChange={(event) => props.onSelectTag(event.target.value)}>
+                onChange={(event) => props.onSelectTag(event.target.value)}
+                value={props.currentTag}>
                 <option value="All">Show all</option>
                 {options}
             </select>

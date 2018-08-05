@@ -16,6 +16,7 @@ const localMap = withScriptjs(withGoogleMap((props) => {
                             <li>Address: {marker.contact_info.address}</li>
                             <li>Phone: {marker.contact_info.phone}</li>
                             <li>Link: <a href={marker.contact_info.link}>{marker.contact_info.link}</a></li>
+                            <li>TripAdvisor: <a href={marker.trip_advisor}>{marker.trip_advisor}</a></li>
                         </ul>
                     </div>
                 </InfoWindow>

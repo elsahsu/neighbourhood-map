@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const tampere_locations_url = 'https://visittampere.fi:443/api/location?tag=Extreme&lang=en&limit=200';
+    const tampere_locations_url = 'https://visittampere.fi:443/api/location?lang=en&limit=100';
     fetch(tampere_locations_url)
       .then(result => result.json())
       .then(locations => {
@@ -28,7 +28,7 @@ class App extends Component {
         let taggedMarkers = {}
         console.log(locations);
         locations.forEach(location => {
-          if (location.tags.length > 0) {
+          if (location.tags.length > 0 && location.tripadvisor_embed.length) {
             // console.log(location.tags);
             const marker = {
               id: location.id,
@@ -36,6 +36,8 @@ class App extends Component {
               tags: location.tags,
               description: location.description,
               contact_info: location.contact_info,
+              trip_advisor: location.tripadvisor_embed,
+              image: location.image,
               position: {
                 lat: location.location[0],
                 lng: location.location[1]
@@ -59,8 +61,10 @@ class App extends Component {
           markers: markers,
           tags: tags,
           taggedMarkers: taggedMarkers,
-          currentTag: tags[0]
+          currentTag: 'Aktiviteetti lapsille'
         });
+      }).catch(error => {
+        console.log(error);
       });
   }
 

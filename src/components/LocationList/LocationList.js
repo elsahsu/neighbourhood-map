@@ -7,7 +7,7 @@ const locationList = (props) => {
         const tags = marker.tags.map(tag => translateTag(tag));
         return (
             <li key={marker.id} onClick={() => props.clicked(marker)}>
-                {marker.title}
+                <div dangerouslySetInnerHTML={{__html: marker.title}}></div>
                 <div className="tags">{tags.join(', ')}</div>
             </li>
         );
