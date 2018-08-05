@@ -3,7 +3,7 @@ import './LocalMap.css';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 const localMap = withScriptjs(withGoogleMap((props) => {
-    console.log('ShowInfoId:', props.showInfoId);
+    // console.log('ShowInfoId:', props.showInfoId);
     const markers = props.markers.map(marker => {
         let infoWindow = null;
         if (props.showInfoId === marker.id) {

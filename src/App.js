@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
 import LocationList from './components/LocationList/LocationList';
-import TagFilter, {translateTag} from './components/TagFilter/TagFilter';
+import TagFilter from './components/TagFilter/TagFilter';
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const tampere_locations_url = 'https://visittampere.fi:443/api/location?tag=Extreme&lang=en&limit=100';
+    const tampere_locations_url = 'https://visittampere.fi:443/api/location?tag=Extreme&lang=en&limit=200';
     fetch(tampere_locations_url)
       .then(result => result.json())
       .then(locations => {
@@ -25,7 +25,7 @@ class App extends Component {
         console.log(locations);
         locations.forEach(location => {
           if (location.tags.length > 0) {
-            console.log(location.tags);
+            // console.log(location.tags);
             const marker = {
               id: location.id,
               title: location.title,
@@ -68,10 +68,14 @@ class App extends Component {
     this.setState({currentTag: tag});
   }
 
+  locationClicked = (id) => {
+    console.log('Location clicked:', id);
+  }
+
   render() {
     let markers = this.state.markers;
     let currentTag = this.state.currentTag;
-    if (currentTag != '' && currentTag != 'All')
+    if (currentTag && currentTag !== 'All')
     {
       markers = this.state.taggedMarkers[currentTag];
     }
@@ -94,9 +98,10 @@ class App extends Component {
           />
           </section>
           <section id="location-list-section">
-          <TagFilter tags={this.state.tags} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
+          <TagFilter tags={this.state.tags.sort()} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
           <LocationList
-            markers={markers}>
+            markers={markers}
+            clicked={this.locationClicked}>
           </LocationList>
           </section>
         </main>
