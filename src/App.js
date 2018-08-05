@@ -68,9 +68,9 @@ class App extends Component {
       });
   }
 
-  markerClicked = (id) => {
-    console.log('Marker clicked:' + id);
-    this.setState({showInfoId: id});
+  markerClicked = (marker) => {
+    console.log('Marker clicked:' + marker);
+    this.setState({showInfoId: marker});
   }
 
   selectTag = (tag) => {
@@ -78,9 +78,7 @@ class App extends Component {
     this.setState({currentTag: tag});
   }
 
-  locationClicked = (marker) => {
-    console.log('Location clicked:', marker);
-    this.setState({showInfoId: marker.id});
+  getYelpData(marker) {
     // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=' + marker.position.lat + '&longitude=' + marker.position.lng;
     const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone?phone=' + marker.contact_info.phone;
     // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.39997';
@@ -100,6 +98,12 @@ class App extends Component {
         console.error(error);
         console.error(error.message);
       });
+  }
+
+  locationClicked = (marker) => {
+    console.log('Location clicked:', marker);
+    this.setState({showInfoId: marker.id});
+    this.getYelpData(marker);
   }
 
   render() {
