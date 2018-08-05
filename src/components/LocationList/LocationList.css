@@ -7,15 +7,10 @@
 }
 
 .LocationList li {
+  width: 100%;
   text-align: left;
   color: white;
   padding: 5pt;
   margin: 0px;
   border: 1px solid grey;
-}
-
-@media screen and (min-width: 600pt) {
-  .LocationList {
-    width: 32%;
-  }
 }

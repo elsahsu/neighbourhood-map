@@ -82,6 +82,7 @@ class App extends Component {
           <h1 className="App-title">Neighbourhood Map</h1>
         </header>
         <main>
+          <section id="map-section"> 
           <LocalMap
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnXBaHfhOkAjzcKTCAmFt557I1h8jGiRQ&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
@@ -91,9 +92,13 @@ class App extends Component {
             showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
           />
+          </section>
+          <section id="location-list-section">
           <TagFilter tags={this.state.tags} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
           <LocationList
-            markers={markers} />
+            markers={markers}>
+          </LocationList>
+          </section>
         </main>
       </div>
     );
