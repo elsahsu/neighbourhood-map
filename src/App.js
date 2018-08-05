@@ -81,6 +81,25 @@ class App extends Component {
   locationClicked = (marker) => {
     console.log('Location clicked:', marker);
     this.setState({showInfoId: marker.id});
+    // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=' + marker.position.lat + '&longitude=' + marker.position.lng;
+    const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone?phone=' + marker.contact_info.phone;
+    // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.39997';
+    console.log(yelp_url);
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer tltEfS9csV7_4C4E6ovF7h49dpNw6qhZiAhz87yPcmuElpnt_rIcspcGI1esYtas4v0HUB3zi8oZHVMl9QqEaTqIIz0UMZuIakOVxLEIP9kydCjrv01ui7oHHztnW3Yx');
+    headers.append('Content-Type', "application/json; charset=utf-8");
+    fetch(yelp_url, {
+        method: 'GET',
+        headers: headers,
+      })
+      .then(result => result.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+        console.error(error.message);
+      });
   }
 
   render() {
@@ -99,7 +118,7 @@ class App extends Component {
         <main>
           <section id="map-section"> 
           <LocalMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnXBaHfhOkAjzcKTCAmFt557I1h8jGiRQ&v=3.exp&libraries=geometry,drawing,places"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxheGiACe5WFMKf6-IbBiNANp5w1OW8tk&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div className="MapContainer" style={{ height: `600px` }} />}
             mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
