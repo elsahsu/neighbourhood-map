@@ -50,3 +50,10 @@ main {
     height: 800px;
   }
 }
+
+div.WarningMessage {
+  width: 100%;
+  background-color: #A00;
+  color: white;
+  padding: 5pt;
+}

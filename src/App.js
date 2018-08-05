@@ -16,7 +16,8 @@ class App extends Component {
     currentTag: '', // Currently selected tag
     showInfoId: 0, // Currently shown info window location ID
     taggedMarkers: {}, // Markers grouped by tags
-    yelpData: {} // Data fetched from Yelp by ID
+    yelpData: {}, // Data fetched from Yelp by ID
+    warningMessage: '' // Warning for user if something does not work as expected
   }
 
   componentDidMount() {
@@ -66,6 +67,7 @@ class App extends Component {
         });
       }).catch(error => {
         console.log(error);
+        this.setState({warningMessage: 'Unable to read attractions. Check connection.'});
       });
   }
 
@@ -111,6 +113,7 @@ class App extends Component {
       .catch(error => {
         console.error(error);
         console.error(error.message);
+        this.setState({warningMessage: 'Unable to access Yelp. Check connection.'});
       });
   }
 
@@ -138,6 +141,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Tampere Attractions</h1>
         </header>
+        { this.state.warningMessage && <div className="WarningMessage"> {this.state.warningMessage} </div>}
         <main>
           <section id="map-section"> 
           <LocalMap
