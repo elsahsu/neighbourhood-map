@@ -22,7 +22,7 @@ const localMap = withScriptjs(withGoogleMap((props) => {
                                 src={marker.image.src}
                                 alt={marker.image.title}
                                 title={marker.image.title}
-                                width="300px" />
+                                height="200px" />
                         </a>
                         <div dangerouslySetInnerHTML={{__html: marker.description}}></div>
                         <ul>

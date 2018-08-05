@@ -7,7 +7,7 @@ let translateTag = (tag) => {
     else if (tag === 'Puisto')
         return 'Park';
     else if (tag === 'Eläinkahvila')
-       return 'Animal Cafe';
+       return 'Animal Café';
     else if (tag === 'Aktiviteetti lapsille')
         return 'Activity for Children';
     else if (tag === 'Kulttuuria lapsille')
@@ -17,7 +17,7 @@ let translateTag = (tag) => {
     else if (tag === 'Legendaarinen hotelli')
         return 'Famous Hotel';
     else if (tag === 'Legendaarinen kahvila')
-        return 'Famous Cafe';
+        return 'Famous Café';
     else if (tag === 'Legendaarinen ravintola')
         return 'Famous Restaurant';
     else if (tag === 'Lapsiystävällinen hotelli')

@@ -94,7 +94,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Neighbourhood Map</h1>
+          <h1 className="App-title">Tampere Attractions</h1>
         </header>
         <main>
           <section id="map-section"> 
