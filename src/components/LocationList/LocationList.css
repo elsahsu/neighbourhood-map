@@ -16,6 +16,11 @@
   border: 1px solid grey;
 }
 
+.LocationList li:hover {
+  background-color: #444;
+  cursor: pointer;
+}
+
 .LocationList div.tags {
     color: grey;
     font-size: 10pt;

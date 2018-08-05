@@ -40,7 +40,16 @@ let translateTag = (tag) => {
 }
 
 const tagFilter = (props) => {
-    const options = props.tags.map(tag => 
+    let sortedTags = props.tags;
+    sortedTags.sort(function(a,b) {
+        const transA = translateTag(a);
+        const transB = translateTag(b);
+        if (transA > transB)
+          return 1;
+        else
+          return -1;
+    });
+    const options = sortedTags.map(tag =>
         <option key={tag} value={tag}> {translateTag(tag)} </option>
     )
 
