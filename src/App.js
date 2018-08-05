@@ -27,7 +27,7 @@ class App extends Component {
         let markers = [];
         let tags = []
         let taggedMarkers = {}
-        console.log(locations);
+        // console.log(locations);
         locations.forEach(location => {
           if (location.tags.length > 0 && location.tripadvisor_embed.length) {
             // console.log(location.tags);
@@ -56,8 +56,8 @@ class App extends Component {
           }
         });
 
-        console.log(markers);
-        console.log(tags);
+        // console.log(markers);
+        // console.log(tags);
         this.setState({
           markers: markers,
           tags: tags,
@@ -80,13 +80,15 @@ class App extends Component {
   }
 
   getYelpData(marker) {
+    /* Get additional data from Yelp, if available */
+    /* Using phone number just to make sure that we don't get data from wrong place. */
+    /* Also need to use https://cors-anywhere.herokuapp.com to avoid CORS problems */
     if (!marker.contact_info.phone) {
       console.log('No phone number, cannot search Yelp');
       return;
     }
     // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=' + marker.position.lat + '&longitude=' + marker.position.lng;
     const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone?phone=' + marker.contact_info.phone;
-    // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.39997';
     console.log(yelp_url);
     let headers = new Headers();
     headers.append('Authorization', 'Bearer tltEfS9csV7_4C4E6ovF7h49dpNw6qhZiAhz87yPcmuElpnt_rIcspcGI1esYtas4v0HUB3zi8oZHVMl9QqEaTqIIz0UMZuIakOVxLEIP9kydCjrv01ui7oHHztnW3Yx');

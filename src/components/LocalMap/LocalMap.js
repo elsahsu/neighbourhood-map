@@ -6,8 +6,10 @@ const localMap = withScriptjs(withGoogleMap((props) => {
     // console.log('ShowInfoId:', props.showInfoId);
     const markers = props.markers.map(marker => {
         let infoWindow = null;
+        let animation = window.google.maps.Animation.NONE;
         if (props.showInfoId === marker.id) {
             console.log(marker.contact_info);
+            animation = window.google.maps.Animation.BOUNCE;
             let tripAdvisorLine = null;
             if (marker.trip_advisor.length > 10) {
                 tripAdvisorLine = <li>TripAdvisor: <a href={marker.trip_advisor}>{marker.trip_advisor}</a></li>
@@ -57,6 +59,7 @@ const localMap = withScriptjs(withGoogleMap((props) => {
                 key={marker.id}
                 title={marker.title}
                 position={marker.position}
+                animation={animation}
                 onClick={() => {props.markerClicked(marker.id);}}>
                 {infoWindow}
             </Marker>
