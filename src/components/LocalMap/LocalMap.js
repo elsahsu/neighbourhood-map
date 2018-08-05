@@ -14,6 +14,21 @@ const localMap = withScriptjs(withGoogleMap((props) => {
             } else {
                 tripAdvisorLine = <li>TripAdvisor ID: {marker.trip_advisor}</li>
             }
+
+            let yelpInfo = <div> No data from Yelp </div>;
+            if (props.yelp) {
+                yelpInfo = (
+                    <div>
+                        <h3> Yelp </h3>
+                        <ul>
+                            <li> Price: {props.yelp.price} </li>
+                            <li> Rating: {props.yelp.rating} </li>
+                            <li> Reviews: {props.yelp.review_count} </li>
+                            <li> <a href={props.yelp.url}>Link</a> </li>
+                        </ul>
+                    </div>
+                );
+            }
             infoWindow = (
                 <InfoWindow className="InfoWindow">
                     <div>
@@ -31,6 +46,7 @@ const localMap = withScriptjs(withGoogleMap((props) => {
                             <li>Link: <a href={marker.contact_info.link}>{marker.contact_info.link}</a></li>
                             {tripAdvisorLine}
                         </ul>
+                        {yelpInfo}
                     </div>
                 </InfoWindow>
             );

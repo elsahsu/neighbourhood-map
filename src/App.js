@@ -15,7 +15,8 @@ class App extends Component {
     },
     currentTag: '', // Currently selected tag
     showInfoId: 0, // Currently shown info window location ID
-    taggedMarkers: {} // Markers grouped by tags
+    taggedMarkers: {}, // Markers grouped by tags
+    yelpData: {} // Data fetched from Yelp by ID
   }
 
   componentDidMount() {
@@ -79,6 +80,10 @@ class App extends Component {
   }
 
   getYelpData(marker) {
+    if (!marker.contact_info.phone) {
+      console.log('No phone number, cannot search Yelp');
+      return;
+    }
     // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=' + marker.position.lat + '&longitude=' + marker.position.lng;
     const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone?phone=' + marker.contact_info.phone;
     // const yelp_url = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete?text=del&latitude=37.786882&longitude=-122.39997';
@@ -93,6 +98,13 @@ class App extends Component {
       .then(result => result.json())
       .then(data => {
         console.log(data);
+        if (data && data.businesses && data.businesses.length === 1) {
+          let yelpData = Object.assign(this.state.yelpData);
+          const business_info = data.businesses[0];
+          console.log('Saving yelp data: ', business_info)
+          yelpData[marker.id] = business_info;
+          this.setState({yelpData: yelpData});
+        }
       })
       .catch(error => {
         console.error(error);
@@ -114,6 +126,11 @@ class App extends Component {
       markers = this.state.taggedMarkers[currentTag];
     }
 
+    let yelp = null;
+    if (this.state.showInfoId && this.state.yelpData[this.state.showInfoId]) {
+      yelp = this.state.yelpData[this.state.showInfoId];
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -130,6 +147,7 @@ class App extends Component {
             showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
             center={this.state.center}
+            yelp={yelp}
           />
           </section>
           <section id="location-list-section">
