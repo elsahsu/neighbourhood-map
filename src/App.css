@@ -28,6 +28,12 @@ main {
   width: 100%;
 }
 
+@media screen and (max-width: 599pt) {
+  .LocalMap {
+    height: 200px;
+  }
+}
+
 @media screen and (min-width: 600pt) {
   #map-section {
     width: 70%;

@@ -1,5 +1,5 @@
 import React from 'react';
-// import './TagFilter.css';
+import './TagFilter.css';
 
 let translateTag = (tag) => {        
     if (tag === 'Hungry for Tampere')
@@ -30,7 +30,7 @@ const tagFilter = (props) => {
 
     return (
         <div className="TagFilter">
-            <label for="tag-select">Tag:</label>
+            <label for="tag-select">Select Type</label>
             <select
                 id="tag-select"
                 onChange={(event) => props.onSelectTag(event.target.value)}>

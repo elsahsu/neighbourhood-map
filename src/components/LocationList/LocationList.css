@@ -4,6 +4,7 @@
   margin: 0px;
   padding: 0px;
   background-color: #222;
+  list-style: none;
 }
 
 .LocationList li {
@@ -13,4 +14,9 @@
   padding: 5pt;
   margin: 0px;
   border: 1px solid grey;
+}
+
+.LocationList div.tags {
+    color: grey;
+    font-size: 10pt;
 }

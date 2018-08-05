@@ -1,0 +1,19 @@
+.TagFilter {
+    background-color: #222;
+    color: white;
+    font-size: 11pt;
+}
+
+.TagFilter label {
+    padding: 5pt;
+}
+
+.TagFilter select {
+    padding: 5pt;
+}
+
+.TagFilter option {
+    font-size: 11pt;
+}
+
+
