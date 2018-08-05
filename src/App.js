@@ -5,7 +5,9 @@ import LocationList from './components/LocationList/LocationList';
 
 class App extends Component {
   state = {
-    markers: []
+    markers: [],
+    tags: [],
+    showInfoId: 0
   }
 
   componentDidMount() {
@@ -14,6 +16,7 @@ class App extends Component {
       .then(result => result.json())
       .then(locations => {
         let markers = [];
+        let tags = []
         console.log(locations);
         locations.forEach(location => {
           if (location.tags.length > 0) {
@@ -30,15 +33,23 @@ class App extends Component {
               }
             }
             markers.push(marker);
+            location.tags.forEach(tag => {
+                if (!tags.includes(tag)) {
+                  tags.push(tag);
+                }
+            })
           }
         });
+
         console.log(markers);
-        this.setState({markers: markers});
+        console.log(tags);
+        this.setState({markers: markers, tags: tags});
       });
   }
 
-  markerClicked(id) {
+  markerClicked = (id) => {
     console.log('Marker clicked:' + id);
+    this.setState({showInfoId: id});
   }
 
   render() {
@@ -54,7 +65,7 @@ class App extends Component {
             containerElement={<div className="MapContainer" style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
             markers={this.state.markers}
-            showInfoWindow={false}
+            showInfoId={this.state.showInfoId}
             markerClicked={this.markerClicked}
           />
           <LocationList
