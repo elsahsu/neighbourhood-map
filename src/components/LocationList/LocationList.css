@@ -16,7 +16,7 @@
   border: 1px solid grey;
 }
 
-.LocationList li:hover {
+.LocationList li:hover, .LocationList li:focus {
   background-color: #444;
   cursor: pointer;
 }

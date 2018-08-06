@@ -60,6 +60,7 @@ const tagFilter = (props) => {
             <label htmlFor="tag-select">Select Type</label>
             <select
                 id="tag-select"
+                tabIndex="1"
                 onChange={(event) => props.onSelectTag(event.target.value)}
                 value={props.currentTag}>
                 <option value="All">Show all</option>
