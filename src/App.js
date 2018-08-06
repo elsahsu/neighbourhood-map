@@ -142,6 +142,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Tampere Attractions</h1>
         </header>
+        <div id="warning-message"></div>
         { this.state.warningMessage && <div className="WarningMessage"> {this.state.warningMessage} </div>}
         <main role="main">
           <section id="map-section"> 
