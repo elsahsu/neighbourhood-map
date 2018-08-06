@@ -1,7 +1,9 @@
 import React from 'react';
 import './TagFilter.css';
 
-let translateTag = (tag) => {        
+/* Although VisitTampere API can serve most content in English, the tags
+ * are always in Finnish so they need to be translated when shown to user. */
+let translateTag = (tag) => {
     if (tag === 'Hungry for Tampere')
         return tag;
     else if (tag === 'Puisto')

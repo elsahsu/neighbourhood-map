@@ -142,7 +142,7 @@ class App extends Component {
           <h1 className="App-title">Tampere Attractions</h1>
         </header>
         { this.state.warningMessage && <div className="WarningMessage"> {this.state.warningMessage} </div>}
-        <main>
+        <main role="main">
           <section id="map-section"> 
           <LocalMap
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxheGiACe5WFMKf6-IbBiNANp5w1OW8tk&v=3.exp&libraries=geometry,drawing,places"
