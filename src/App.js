@@ -3,6 +3,7 @@ import './App.css';
 import LocalMap from './components/LocalMap/LocalMap';
 import LocationList from './components/LocationList/LocationList';
 import TagFilter from './components/TagFilter/TagFilter';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 
 class App extends Component {
@@ -144,24 +145,26 @@ class App extends Component {
         { this.state.warningMessage && <div className="WarningMessage"> {this.state.warningMessage} </div>}
         <main role="main">
           <section id="map-section"> 
-          <LocalMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxheGiACe5WFMKf6-IbBiNANp5w1OW8tk&v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div className="MapContainer" style={{ height: `600px` }} />}
-            mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
-            markers={markers}
-            showInfoId={this.state.showInfoId}
-            markerClicked={this.markerClicked}
-            center={this.state.center}
-            yelp={yelp}
-          />
+            <ErrorBoundary message="Failed to load map. Check connection.">
+              <LocalMap
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxheGiACe5WFMKf6-IbBiNANp5w1OW8tk&v=3.exp&libraries=geometry,drawing,places"
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div className="MapContainer" style={{ height: `600px` }} />}
+                mapElement={<div style={{ height: `100%` }} className="LocalMap" aria-label="location" role="application" />}
+                markers={markers}
+                showInfoId={this.state.showInfoId}
+                markerClicked={this.markerClicked}
+                center={this.state.center}
+                yelp={yelp}
+              />
+            </ErrorBoundary>
           </section>
           <section id="location-list-section">
-          <TagFilter tags={this.state.tags.sort()} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
-          <LocationList
-            markers={markers}
-            clicked={this.locationClicked}>
-          </LocationList>
+            <TagFilter tags={this.state.tags.sort()} currentTag={this.state.currentTag} onSelectTag={this.selectTag} />
+            <LocationList
+              markers={markers}
+              clicked={this.locationClicked}>
+            </LocationList>
           </section>
         </main>
       </div>
